@@ -1,6 +1,4 @@
-
 import java.util.ArrayList;
-
 public class EmpWageBuilderArray implements IComputeEmpWage
 {
  	 public static final int PARTTIME=1;
@@ -16,16 +14,17 @@ public class EmpWageBuilderArray implements IComputeEmpWage
 
 	 public void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth)
 	 {
-		 CompanyEmpWage companyEmpWage=new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
-			companyEmpWageArrayList.add(companyEmpWage);
+		CompanyEmpWage companyEmpWage=new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
+		companyEmpWageArrayList.add(companyEmpWage);
 	 }
+	 
 	 public void computeEmpWage()
 	 {
-	 	for(int i=0;i<numOfCompany;i++)
+	 	for(int i=0;i<companyEmpWageArrayList.size();i++)
 		{
-	 		CompanyEmpWage companyEmpWage=companyEmpWageArrayList.get(i);
-			 companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
-			 System.out.println(companyEmpWage);
+		 CompanyEmpWage companyEmpWage=companyEmpWageArrayList.get(i);
+		 companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
+		 System.out.println(companyEmpWage);
 		}
 	 }
 	 public int computeEmpWage(CompanyEmpWage companyEmpWage)
@@ -50,7 +49,7 @@ public class EmpWageBuilderArray implements IComputeEmpWage
 	 	     empHours=0;
 	      }
 	    totalHours+=empHours;
-	    System.out.println("Days :"+totalWorkingDays+" Hours :"+empHours);
+	    System.out.println("Day :"+totalWorkingDays+" Hours :"+empHours+" Daily Employee Wage :"+(empHours*companyEmpWage.empRatePerHour));
 	   }
 	   return totalHours*companyEmpWage.empRatePerHour;
 	 }
